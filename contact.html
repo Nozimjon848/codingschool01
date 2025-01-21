@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact Us</title>
+
+	<!-- font Awesome CDN link -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+
+	<!-- External CSS -->
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="about.css">
+	<link rel="stylesheet" href="course-inner.css">
+	<link rel="stylesheet" href="contact.css">
+
+	<!-- JQuery CDN link -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<!-- Navigation start -->
+	<nav>
+		<img src="{2A033DFB-253C-457B-B2E2-AF65A65E1224}.png" class="logo" alt="">
+
+		<div class="navigation">
+			<ul>
+				<i id="menu-close" class="fas fa-times"></i>
+				<li><a href="index.html" >Home</a></li>
+				<li><a href="#about-container">About Us</a></li>
+				<li><a href="#course">Courses</a></li>
+				<li><a href="#experts">Teacher</a></li>
+				<li><a href="contact.html" class="active">Contact</a></li>
+			</ul>
+
+			<img src="img/menu.png" id="menu-btn" alt="">
+		</div>
+	</nav>
+	<br><br>
+	<section id="contact">
+		<div class="getin">
+			<h2>Aloqa qiling</h2>
+			<p>Yordam qidiryapsizmi? Shaklni to'ldiring va yangi sarguzashtni boshlang.</p>
+
+			<div class="getin-details">
+				<h3>Joylashuv</h3>
+				<div>
+					<i class="fa-solid fa-map get"></i>
+					<p>Uzbekistan, Fergana, Rishtan Coding school</p>
+				</div>
+
+				<h3>Telefon raqam</h3>
+				<div>
+					<i class="fas fa-phone-alt get"></i>
+					<p>(+998) 90 850 46 88 <br> (+998) 93 719 69 89</p>
+				</div>
+
+				<h3>Support</h3>
+				<div>
+					<i class="fab fa-telegram get"></i>
+					<p>tech@educa.com</p>
+				</div>
+
+				<h3>Bizni kuzating</h3>
+				<div class="pro-links">
+						<a href="https://t.me/IT_markaz_rishton"><i class="fab fa-telegram"></i></a>
+					<i class="fab fa-instagram">
+						<a href=""></a>
+					</i>
+				</div>
+			</div>
+		</div>
+
+		<div class="form">
+			<h4>Biz bilan boglaning</h4>
+			<p>Bu joyni toldiring</p>
+			<div class="form-row">
+				<input type="text" placeholder="Ismingiz">
+				<input type="number" placeholder="Nomeringiz">
+			</div>
+			<div class="form-col">
+				<input type="text" placeholder="Qiziqishingiz">
+			</div>
+			<div class="form-col">
+				<textarea name="" id="" cols="30" rows="8" placeholder="Izoh yozing..."></textarea>
+			</div>
+
+			<div class="form-col">
+				<button>Yuborish</button>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="map">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d1535.9355640166884!2d71.2747983889056!3d40.36003730357947!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDIxJzM2LjAiTiA3McKwMTYnMzEuMCJF!5e1!3m2!1sen!2s!4v1736578616985!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</section>
+	<footer>
+		<div class="copyright">
+			<p>
+				Copyright @ 2022 All rights reserved | This template is made by <a href="https://atulcodex.com" target="_blank">atulcodex</a>
+			</p>
+			<div class="pro-links">
+				<i class="fab fa-facebook"></i>
+				<i class="fab fa-instagram"></i>
+				<i class="fab fa-linkedin-in"></i>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer section ends from here -->
+	<script>
+		document.querySelector('button').addEventListener('click', function(e) {
+		  e.preventDefault(); // Formani default yuborilishini oldini olish
+		  
+		  const name = document.querySelector('input[placeholder="Ismingiz"]').value;
+		  const number = document.querySelector('input[placeholder="Nomeringiz"]').value;
+		  const interest = document.querySelector('input[placeholder="Qiziqishingiz"]').value;
+		  const comment = document.querySelector('textarea').value;
+	  
+		  const message = `
+	  <b>⭐Yangi murojaat:</b>
+🙍🏻‍♂️Ism: ${name}
+📞Telefon: ${number}
+✨Qiziqish: ${interest}
+📝Izoh: ${comment}
+		  `;
+	  
+		  // Telegram API orqali yuborish
+		  const botToken = '8047669492:AAFBEp9eEG6GLEzcoGBFC-Qv3VP-Nbp8D98'; // Bot tokenni kiriting
+		  const chatId = '6743839154';    // Guruh yoki shaxsiy chat ID
+		  const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+	  
+		  fetch(url, {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+			  chat_id: chatId,
+			  text: message,
+			  parse_mode: 'HTML'
+			})
+		  })
+		  .then(response => response.json())
+		  .then(data => {
+			if (data.ok) {
+			  alert('Xabar yuborildi!');
+			} else {
+			  alert('Xatolik yuz berdi.');
+			}
+		  })
+		  .catch(error => console.error('Error:', error));
+		});
+	  </script>
+	  
+	<script>
+		// Show menu links on burger click
+		$('#menu-btn').click(function(){
+			$('nav .navigation ul').addClass('active')
+		});
+
+		// Hide navbar on click function
+		$('#menu-close').click(function(){
+			$('nav .navigation ul').removeClass('active')
+		});
+	</script>
+</body>
+</html>
